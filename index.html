@@ -15,6 +15,7 @@
             height: 100vh;
             margin: 0;
             text-align: center;
+            overflow: hidden; /* Prevents scrollbars during the flooding effect */
         }
 
         .container {
@@ -43,18 +44,46 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .flood-text {
+            position: absolute;
+            font-size: 24px;
+            color: #FF6B6B;
+            white-space: nowrap;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>404</h1>
         <p>Error lover couldn't be found,<br>and now you've reached the end of this site...</p>
-        <p><a href="#" onclick="showErrorMessage()">Return Home</a></p>
+        <p><a href="#" onclick="floodScreen()">Return Home</a></p>
     </div>
 
     <script>
-        function showErrorMessage() {
-            alert("But he won't be there, you lost him in the darkness, again!");
+        function getRandomPosition() {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            return { x, y };
+        }
+
+        function floodScreen() {
+            document.body.innerHTML = ''; // Clear the screen content
+            const interval = setInterval(() => {
+                const { x, y } = getRandomPosition();
+                const floodText = document.createElement('div');
+                floodText.className = 'flood-text';
+                floodText.textContent = "BUT YOU CAN'T!";
+                floodText.style.left = `${x}px`;
+                floodText.style.top = `${y}px`;
+                document.body.appendChild(floodText);
+
+                // Stop flooding after a certain amount of time
+                if (document.body.childElementCount > 100) {
+                    clearInterval(interval);
+                }
+            }, 50); // Adjust speed of flooding by changing interval time
         }
     </script>
 </body>
