@@ -58,7 +58,7 @@
     <div class="container">
         <h1>404</h1>
         <p>Error lover couldn't be found,<br>and now you've reached the end of this site...</p>
-        <p><a href="#" onclick="floodScreen()">Return Home</a></p>
+        <p><a href="#" onclick="floodScreen()">TERMINAL STATUS</a></p>
     </div>
 
     <script>
@@ -82,6 +82,7 @@
                 // Stop flooding after a certain amount of time
                 if (document.body.childElementCount > 999) {
                     clearInterval(interval);
+                    window.location.href = "https://example.com"; // Replace with the URL you want to redirect to
                 }
             }, 50); // Adjust speed of flooding by changing interval time
         }
