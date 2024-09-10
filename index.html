@@ -15,7 +15,6 @@
             height: 100vh;
             margin: 0;
             text-align: center;
-            overflow: hidden; /* Prevents scrollbars during the flooding effect */
         }
 
         .container {
@@ -44,47 +43,20 @@
         a:hover {
             text-decoration: underline;
         }
-
-        .flood-text {
-            position: absolute;
-            font-size: 24px;
-            color: #FF6B6B;
-            white-space: nowrap;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>1241</h1>
         <p>Error depression couldn't be found,<br>and now you've reached the end of this site...</p>
-        <p><a href="#" onclick="floodScreen()">TERMINAL STATUS</a></p>
+        <p><a href="#" onclick="redirect()">TERMINAL STATUS</a></p>
     </div>
 
     <script>
-        function getRandomPosition() {
-            const x = Math.random() * window.innerWidth;
-            const y = Math.random() * window.innerHeight;
-            return { x, y };
-        }
-
-        function floodScreen() {
-            document.body.innerHTML = ''; // Clear the screen content
-            const interval = setInterval(() => {
-                const { x, y } = getRandomPosition();
-                const floodText = document.createElement('div');
-                floodText.className = 'flood-text';
-                floodText.textContent = "BUT YOU CAN'T!";
-                floodText.style.left = `${x}px`;
-                floodText.style.top = `${y}px`;
-                document.body.appendChild(floodText);
-
-                // Stop flooding after a certain amount of time
-                if (document.body.childElementCount > 999) {
-                    clearInterval(interval);
-                    window.location.href = "https://example.com"; // Replace with the URL you want to redirect to
-                }
-            }, 50); // Adjust speed of flooding by changing interval time
+        function redirect() {
+            setTimeout(() => {
+                window.location.href = "https://example.com"; // Replace with the URL you want to redirect to
+            }, 1000); // Delay before redirecting (1000ms = 1 second)
         }
     </script>
 </body>
